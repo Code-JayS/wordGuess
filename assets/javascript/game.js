@@ -14,50 +14,41 @@ for (var i = 0; i < word.length; i++) {
 var LettersLeft = word.length;
 
 // var letters = computerGuess.split("");
-var brainsLeft = word.length + 3;
+var brainsLeft = 10;
 var output = "";
 var inputLetter = "";
-var win = "The word was " + output + " You ate many smart brains"
-
 console.log(word)
 console.log(display)
 console.log(output)
 console.log(brainsLeft)
 console.log(wordBank)
-
-
-const output = document.getElementById("display").innerHTML = wordBank.join(" ");
-const lose = document.getElementById("display").innerHTML = "You were deafeated by the Humans!";
+function progress (){
+document.getElementById("display").innerHTML = wordBank.join(" ");
+}
+function lose(){
+  document.getElementById("display").innerHTML = "You were deafeated by the Humans!";
+}
+function win(){
+  document.getElementById("display").innerHTML = "The word was " + word.toUpperCase() + " You ate many smart brains";
+}
 //get letter value  
-document.onkeyup = function game(inputLetter) {
-  var inputLetter = String.fromCharCode(inputLetter.keyCode);
+document.onkeyup = function (event) {
+  inputLetter = event.key;
   console.log(inputLetter)
   //Make game work logic
-  for (var j = 0; j < LettersLeftword.length; j++) {
+  for (var j = 0; j < LettersLeft; j++) {
     if (word[j] === inputLetter) {
       wordBank[j] = inputLetter;
       //get word closer to win length
       LettersLeft--;
-      game
+      progress()
+    }
+    
+    else if (LettersLeft === 0){
+      win()
     }
     else {
       brainsLeft--;
     }
-
-  if (LettersLeft > 0) {
-    output
-  }
-  else if (LettersLeft = 0) {
-    win
-  }
-  else {
-    lose
-  }
   }
 }
-
-
-
-
-}
-
